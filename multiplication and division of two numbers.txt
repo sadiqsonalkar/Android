@@ -1,0 +1,90 @@
+XML code:
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayoutandroid:layout_width="match_parent"
+android:layout_height="match_parent"
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:paddingTop="16dp"
+android:paddingBottom="16dp"
+android:paddingLeft="15dp"
+android:paddingRight="15dp">
+<TextViewandroid:id="@+id/Label1"
+android:layout_width="150dp"
+android:layout_height="wrap_content"
+android:layout_alignParentStart="true"
+android:layout_alignParentTop="true"
+android:text="Enter First Number :"
+android:textAlignment="center"
+android:textSize="20dp" />
+<TextViewandroid:id="@+id/Label2"
+android:layout_width="130dp"
+android:layout_height="wrap_content"
+android:layout_alignParentStart="true"
+android:layout_below="@+id/Label1"
+android:layout_marginTop="16dp"
+android:text="Enter Second Number :"
+android:textAlignment="center"
+android:textSize="20dp" />
+<TextViewandroid:id="@+id/Label3"
+android:layout_width="250px"
+android:layout_height="wrap_content"
+android:layout_alignParentStart="true"
+android:layout_below="@+id/Button1"
+android:layout_marginTop="103dp"
+android:text="Result ="
+android:textAlignment="center"
+android:textSize="20dp" />
+<Button        android:id="@+id/Button1"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_alignBaseline="@+id/Button2"
+android:layout_alignBottom="@+id/Button2"
+android:layout_alignParentStart="true"
+android:onClick="mul"
+android:text="*" />
+<Button        android:id="@+id/Button2"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_below="@+id/Label2"
+android:layout_marginTop="22dp"
+android:layout_toEndOf="@+id/Button1"
+android:onClick="div"
+android:text="/" />
+<EditTextandroid:id="@+id/Text1"
+android:layout_width="100dp"
+android:layout_height="wrap_content"
+android:layout_toRightOf="@id/Label1"/>
+<EditTextandroid:id="@+id/Text2"
+android:layout_width="100dp"
+android:layout_height="wrap_content"
+android:layout_alignBottom="@+id/Label2"
+android:layout_toEndOf="@+id/Label2" /></RelativeLayout>
+
+Java code:
+package pracs.college.relativecalc;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+public class MainActivity extends AppCompatActivity {
+EditText e1;   EditText e2;    TextView t1;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+        e1 = (EditText) findViewById(R.id.Text1);
+        e2 = (EditText) findViewById(R.id.Text2);
+        t1 = (TextView) findViewById(R.id.Label3);    }
+    public void mul(View v) {
+Toast.makeText(getApplicationContext(), "You have press multiplication button.", Toast.LENGTH_SHORT).show();
+        double a = Double.parseDouble(e1.getText().toString());
+        double b = Double.parseDouble(e2.getText().toString());
+        double c = a * b;
+        t1.setText("Result = " + Double.toString(c));    }
+    public void div(View v) {
+Toast.makeText(getApplicationContext(), "You have press division button.", Toast.LENGTH_SHORT).show();
+        double a = Double.parseDouble(e1.getText().toString());
+        double b = Double.parseDouble(e2.getText().toString());
+        double c = a / b;
+        t1.setText("Result = " + Double.toString(c));    }}

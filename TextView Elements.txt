@@ -1,0 +1,38 @@
+XML:
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayoutxmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_height="match_parent"
+android:layout_width="match_parent"
+android:paddingLeft="16dp"
+android:paddingRight="16dp"
+android:paddingTop="10dp"
+android:paddingBottom="10dp">
+<TextView
+android:id="@+id/L1"
+android:layout_width="match_parent"
+android:layout_height="50dp"
+android:text="Welcome To Sangram"
+android:textAlignment="center"
+android:textSize="29dp"
+android:background="@color/colorAccent"/>
+<TextView
+android:id="@+id/L2"
+android:layout_below="@id/L1"
+android:layout_width="match_parent"
+android:layout_height="50dp"
+android:textStyle="bold"
+android:textAlignment="center"
+android:text="Installing Android Sudio"
+android:textSize="29dp"/>
+<ScrollView
+android:layout_width="match_parent"
+android:layout_height="400dp"
+android:layout_below="@id/L2">
+<TextView
+android:layout_below="@id/L2"
+android:layout_width="match_parent"
+android:layout_height="400dp"
+android:textSize="30dp"
+android:text="@string/details"/>
+</ScrollView>
+</RelativeLayout>

@@ -1,0 +1,160 @@
+Activity_main.xml:
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+    <TextView
+        android:id="@+id/txt1"
+        android:layout_width="match_parent"
+        android:layout_height="91dp"
+        android:background="#07FDB9"
+        android:soundEffectsEnabled="true"
+        android:text="@string/this_is_a_linear_layout_representation"
+        android:textColor="#120202"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.168" />
+    <Button
+        android:id="@+id/btn1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#DF6902"
+        android:onClick="pop"
+        android:text="@string/button"
+        android:textColor="#0B0000"
+        android:textColorLink="#88CA0F"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</LinearLayout>
+MainActivity.java:
+package com.msc.prac6;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.ContextMenu;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.PopupMenu;
+import android.widget.TextView;
+import android.widget.Toast;
+public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener
+{
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        registerForContextMenu((TextView)findViewById(R.id.txt1));
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        MenuInflater mi = getMenuInflater();
+        mi.inflate(R.menu.menu_file,menu);
+        return true;
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.i1:
+                Toast.makeText(this,"Cicked Main Menu",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.i2:
+                Toast.makeText(this,"I am sub-menu 1",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.i3:
+                Toast.makeText(this,"I am sub-menu 2",Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return true;
+    }
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
+    {
+        super.onCreateContextMenu(menu, v, menuInfo);
+
+        MenuInflater mi = getMenuInflater();
+        mi.inflate(R.menu.menu_file,menu);
+    }
+    @Override
+    public boolean onContextItemSelected(MenuItem item)
+    {        switch (item.getItemId())
+        {
+            case R.id.i1:
+                Toast.makeText(this,"Clicked Main menu",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.i2:
+                Toast.makeText(this,"I am sub-menu 1",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.i3:
+                Toast.makeText(this,"I am sub-menu 2",Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return true;
+    }
+    public void pop(View v)
+    {
+        PopupMenu popup = new PopupMenu(this,v);
+        MenuInflater mi = getMenuInflater();
+        mi.inflate(R.menu.menu_file,popup.getMenu());
+        popup.show();
+        switch (item.getItemId())
+        {
+            case R.id.i1:
+                Toast.makeText(this,"Clicked Main menu",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.i2:
+                Toast.makeText(this,"I am sub-menu 1",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.i3:
+                Toast.makeText(this,"I am sub-menu 2",Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return true;
+    }
+    @Override
+    public boolean onMenuItemClick(MenuItem item)
+    {
+        switch (item.getItemId()){
+            case R.id.i1:
+                Toast.makeText(this,"Clicked Main menu",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.i2:
+                Toast.makeText(this,"I am sub-menu 1",Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.i3:
+                Toast.makeText(this,"I am sub-menu 2",Toast.LENGTH_SHORT).show();
+                break;
+        }
+        return true;
+    }
+}
+Menu_file.xml:
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/i1"
+        android:title="Click me to see sub-menu"
+        android:icon="@drawable/ic_launcher" >
+        <menu>
+            <item android:id="@+id/i2"
+                android:title="subitem 1"
+                android:icon="@drawable/ic_launcher"/>
+            <item android:id="@+id/i3"
+                android:title="subitem 2"
+                android:icon="@drawable/ic_launcher" />
+        </menu>
+    </item>
+</menu>

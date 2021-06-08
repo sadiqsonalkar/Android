@@ -1,0 +1,119 @@
+XML code:
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayoutxmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="horizontal">
+<TableRowandroid:layout_width="match_parent"
+android:layout_height="wrap_content">
+<TextViewandroid:id="@+id/textView"
+android:layout_width="wrap_content"
+android:layout_height="match_parent"
+android:layout_column="1"
+android:text="Enter 1st no"
+android:textSize="30dp"
+android:layout_marginStart="0dp"/>
+<EditTextandroid:id="@+id/t1"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_column="2"
+android:ems="10"
+android:inputType="number|numberDecimal"
+android:text="" /></TableRow>
+<TableRowandroid:layout_width="match_parent"
+android:layout_height="wrap_content">
+<TextViewandroid:id="@+id/tv2"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_column="1"
+android:text="Enter 2nd no"
+android:textSize="30dp" />
+<EditTextandroid:id="@+id/t2"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_column="2"
+android:ems="10"
+android:inputType="number|numberDecimal"
+android:text="" /></TableRow>
+<TableRowandroid:layout_width="match_parent"
+android:layout_height="wrap_content">
+<TextViewandroid:id="@+id/res"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:layout_column="1"
+android:text="Result = "
+android:textSize="30dp" /></TableRow>
+<TableRowandroid:layout_width="match_parent"
+android:layout_height="wrap_content">
+<Button            android:id="@+id/b1"
+android:layout_width="90dp"
+android:layout_height="match_parent"
+android:layout_column="1"
+android:onClick="add"
+android:text="+"
+android:textSize="30dp" />
+<Button            android:id="@+id/b2"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_column="2"
+android:onClick="sub"
+android:text="-"
+android:textSize="30dp" /></TableRow>
+<TableRowandroid:layout_width="match_parent"
+android:layout_height="wrap_content">
+<Button            android:id="@+id/b3"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_column="1"
+android:onClick="mul"
+android:text="*"
+android:textSize="30dp" />
+<Button            android:id="@+id/b4"
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:layout_column="2"
+android:onClick="div"
+android:text="/"
+android:textSize="30dp" /></TableRow></TableLayout>
+
+Java code:
+package pracs.college.tabcalc;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.view.View;
+import android.widget.Toast;
+        public class MainActivity extends AppCompatActivity {
+EditText e1,e2;            TextView t1;
+            @Override
+            protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+                e1 = (EditText) findViewById(R.id.t1);
+                e2 = (EditText) findViewById(R.id.t2);
+                t1 = (TextView) findViewById(R.id.res);           }
+            public void add(View v){
+Toast.makeText(getApplicationContext(),"You have press addition button.",Toast.LENGTH_SHORT).show();
+                double a=Double.parseDouble(e1.getText().toString());
+                double b=Double.parseDouble(e2.getText().toString());
+                double c=a+b;
+                t1.setText("Result = "+Double.toString(c));            }
+            public void sub(View v){
+Toast.makeText(getApplicationContext(),"You have press subtraction button.",Toast.LENGTH_SHORT).show();
+                double a=Double.parseDouble(e1.getText().toString());
+                double b=Double.parseDouble(e2.getText().toString());
+                double c=a-b;
+                t1.setText("Result = "+Double.toString(c));            }
+            public void mul(View v){
+Toast.makeText(getApplicationContext(),"You have press multiplication button.",Toast.LENGTH_SHORT).show();
+                double a=Double.parseDouble(e1.getText().toString());
+                double b=Double.parseDouble(e2.getText().toString());
+                double c=a*b;
+                t1.setText("Result = "+Double.toString(c));            }
+            public void div(View v){
+Toast.makeText(getApplicationContext(),"You have press division button.",Toast.LENGTH_SHORT).show();
+                double a=Double.parseDouble(e1.getText().toString());
+                double b=Double.parseDouble(e2.getText().toString());
+                double c=a/b;
+                t1.setText("Result = "+Double.toString(c));            }        }

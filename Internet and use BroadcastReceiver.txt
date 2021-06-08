@@ -1,0 +1,114 @@
+1.	MainActivity.java:
+package com.msc.prac8;
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.Context;
+import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.os.Bundle;
+import android.widget.TextView;
+public class MainActivity extends AppCompatActivity {
+    private static TextView internetStatus;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        internetStatus = (TextView) findViewById(R.id.t1);        
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            changeTextStatus(true);
+        } else {
+            changeTextStatus(false);
+        }
+    }
+    public void changeTextStatus(boolean isConnected) {
+        if (isConnected) {
+            internetStatus.setText("Internet Connected.");
+            internetStatus.setTextColor(Color.parseColor("#00ff00"));
+        } else {
+            internetStatus.setText("Internet Disconnected.");
+            internetStatus.setTextColor(Color.parseColor("#ff0000"));
+        }
+    }
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MyAppNet.activityPaused();// On Pause notify the Application
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MyAppNet.activityResumed();// On Resume notify the Application
+    }
+
+}
+
+2.	MyAppNet.java:
+package com.msc.prac8;
+
+import android.app.Application;
+
+public class MyAppNet extends Application {
+    // Gloabl declaration of variable to use in whole app
+
+    public static boolean activityVisible; // Variable that will check the
+    // current activity state
+
+    public static boolean isActivityVisible() {
+        return activityVisible; // return true or false
+    }
+
+    public static void activityResumed() {
+        activityVisible = true;// this will set true when activity resumed
+
+    }
+
+    public static void activityPaused() {
+        activityVisible = false;// this will set false when activity paused
+
+    }
+}
+3.	InternetConnection_Receiver.java:
+package com.msc.prac8;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.util.Log;
+
+public class InternetConnection_Receiver extends BroadcastReceiver {
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        try {
+
+            boolean isVisible = MyAppNet.isActivityVisible();// Check if
+            // activity
+            // is
+            // visible
+            // or not
+            Log.i("Activity is Visible ", "Is activity visible : " + isVisible);
+
+            // If it is visible then trigger the task else do nothing
+            if (isVisible == true) {
+                ConnectivityManager connectivityManager = (ConnectivityManager) context
+                        .getSystemService(Context.CONNECTIVITY_SERVICE);
+                NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
+
+                // Check internet connection and accrding to state change the
+                // text of activity by calling method
+                if (networkInfo != null && networkInfo.isConnected()) {
+
+                    new MainActivity().changeTextStatus(true);
+                } else {
+                    new MainActivity().changeTextStatus(false);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+}

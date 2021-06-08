@@ -1,0 +1,208 @@
+1.	MainActivity.java
+package com.msc.prac51;
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.widget.CheckBox;
+import android.widget.RadioButton;
+import android.widget.TextView;
+import android.view.View;
+import android.widget.RadioGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Switch;
+import android.app.AlertDialog;
+public class MainActivity extends AppCompatActivity {
+    private RadioGroup rg;
+    private  TextView t1;
+    private RadioButton rb,rb1,rb2;
+    private Switch s1;
+    private EditText e1;
+    private String s2,r2;
+    private CheckBox c1,c2,c3;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        rg=(RadioGroup)findViewById(R.id.radiogroup);
+        rb=(RadioButton) findViewById(rg.getCheckedRadioButtonId());
+    }
+    public void onRGClick(View v){
+        e1=(EditText)findViewById(R.id.editText);
+        s1=(Switch)findViewById(R.id.s1);
+        s2=(s1.isChecked()==true) ? "Veg":"Non Veg";
+        rb=(RadioButton)findViewById(rg.getCheckedRadioButtonId());
+        c1=(CheckBox)findViewById(R.id.checkBox5);
+        c2=(CheckBox)findViewById(R.id.checkBox6);
+        c3=(CheckBox)findViewById(R.id.checkBox8);
+        r2="";
+        r2=r2+((c1.isChecked()==true)? " Vanilla ":"");
+        r2=r2+((c2.isChecked()==true)? " Chocolate ":"");
+        r2=r2+((c3.isChecked()==true)? " ButterScotch ":"");
+        t1=(TextView)findViewById(R.id.textView3);
+        t1.setText("Your Order: for "+s2+" cake\n Shape: "+rb.getText()+"\n Flavour: "+r2+"\n name on cake is: "+e1.getText());
+    }
+    @Override
+    public void onBackPressed(){
+        AlertDialog.Builder builder=new AlertDialog.Builder(MainActivity.this);
+        builder.setMessage("Do you want to exit ?");
+        builder.setTitle("Alert !!!");
+        builder.setCancelable(false);
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                finish();
+            }
+        });
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog alertDialog=builder.create();
+        alertDialog.show();
+    }
+}
+2.	Activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="396dp"
+        android:layout_height="41dp"
+        android:background="@android:color/holo_orange_dark"
+        android:text=" Welcome to King's"
+        android:textColor="@android:color/background_dark"
+        android:textColorHighlight="#FFFEFE"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.466"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="149dp"
+        android:layout_height="40dp"
+        android:background="#A5FA0C"
+        android:text=" Name on Cake :"
+        android:textColor="#030400"
+        android:textColorHighlight="#20BEB2"
+        android:textSize="19sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.057"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.095" />
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.919"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.096" />
+    <Switch
+        android:id="@+id/s1"
+        android:layout_width="93dp"
+        android:layout_height="35dp"
+        android:text=" Veg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.047"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.181" />
+    <RadioGroup
+        android:id="@+id/radiogroup"
+        android:layout_width="192dp"
+        android:layout_height="149dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.073"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.31">
+        <RadioButton
+            android:id="@+id/rb"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Round" />
+        <RadioButton
+            android:id="@+id/rb1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Heart" />
+        <RadioButton
+            android:id="@+id/rb2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rectangle" />
+    </RadioGroup>
+    <CheckBox
+        android:id="@+id/checkBox5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vanilla"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.098"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.519" />
+    <CheckBox
+        android:id="@+id/checkBox6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Chocolate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.519" />
+    <CheckBox
+        android:id="@+id/checkBox8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="BlackForest"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.914"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.519" />
+    <Button
+        android:id="@+id/button"
+        android:layout_width="393dp"
+        android:layout_height="74dp"
+        android:onClick="onRGClick"
+        android:text="Submit Order"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.388"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.651" />
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="301dp"
+        android:layout_height="123dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.881" />
+</androidx.constraintlayout.widget.ConstraintLayout>

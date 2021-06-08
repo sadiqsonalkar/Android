@@ -1,0 +1,103 @@
+1.	MainActivity.java:
+package com.msc.prac52;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.DatePicker;
+import android.widget.TextView;
+import android.widget.TimePicker;
+import java.util.Calendar;
+public class MainActivity extends AppCompatActivity
+{
+    TextView date;
+    TextView time;
+    DatePickerDialog datePickerDialog;
+    @Override
+    protected void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        date = (TextView) findViewById(R.id.txt4);
+        date.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+               final Calendar c = Calendar.getInstance();
+                int mYear = c.get(Calendar.YEAR); // current year
+                int mMonth = c.get(Calendar.MONTH); // current month
+                int mDay = c.get(Calendar.DAY_OF_MONTH); // current day
+                datePickerDialog = new DatePickerDialog(MainActivity.this, new DatePickerDialog.OnDateSetListener()
+                {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth)
+                    {
+                        // set day of month , month and year value in the edit text
+                        date.setText(dayOfMonth + "/" + (monthOfYear + 1) + "/" + year);
+                    }
+                } , mYear, mMonth, mDay);
+                datePickerDialog.show();
+            }
+        });
+    }
+    public void setTimes(View view)
+    {
+        time = (TextView) findViewById(R.id.time);
+        Calendar mcurrentTime = Calendar.getInstance();
+        int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+        int minute = mcurrentTime.get(Calendar.MINUTE);
+        TimePickerDialog mTimePicker;
+        mTimePicker = new TimePickerDialog(MainActivity.this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                time.setText(selectedHour + ":" + selectedMinute);
+            }
+        }, hour, minute, true);//Yes 24 hour time
+        mTimePicker.setTitle("Select Time");
+        mTimePicker.show();
+    }
+}
+2.	Activity_main.xml:
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="MainActivity">
+    <TextView
+        android:id="@+id/txt4"
+        android:layout_width="323dp"
+        android:layout_height="63dp"
+        android:background="#F89808"
+        android:text="Select the Date"
+        android:textColorHint="@android:color/holo_green_light"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.139" />
+    <TextView
+        android:id="@+id/time"
+        android:layout_width="323dp"
+        android:layout_height="63dp"
+        android:background="#19337E"
+        android:onClick="setTimes"
+        android:text="Select the Time"
+        android:textColor="#F8F4F4"
+        android:textColorHint="@android:color/holo_orange_light"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.53"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.258" />
+</androidx.constraintlayout.widget.ConstraintLayout>

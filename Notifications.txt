@@ -1,0 +1,64 @@
+MainActivity.java:
+package com.msc.prac91;
+import android.app.NotificationManager;
+import android.os.Bundle;
+import android.view.View;
+import androidx.appcompat.app.AppCompatActivity;
+import static androidx.core.app.NotificationCompat.Builder;
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+    public void onNote(View view)
+    {
+        Builder builder;
+        builder = new Builder(this)
+                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setContentTitle("Notification Title")
+                .setContentText("Message");
+        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        if (manager != null) {
+            manager.notify(0, builder.build());
+        }
+    }
+}
+activity_main.xml:
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:onClick="onNote"
+    tools:context=".MainActivity">
+    <Button
+        android:id="@+id/button"
+        android:layout_width="133dp"
+        android:layout_height="87dp"
+        android:onClick="onNote"
+        android:text="@string/button"
+        app:layout_constraintBottom_toBottomOf="parent"     app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+AndroidManifest.xml:
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.msc.prac91">
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

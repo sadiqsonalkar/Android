@@ -1,0 +1,62 @@
+XML:
+<LinearLayoutxmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_height="match_parent"
+android:layout_width="match_parent"
+android:paddingLeft="8dp"
+android:paddingRight="8dp"
+android:paddingTop="8dp"
+android:paddingBottom="8dp"
+android:orientation="vertical">
+<TextViewandroid:paddingTop="8dp"
+android:layout_width="match_parent"
+android:layout_height="50dp"
+android:text="House System"
+android:textAlignment="center"
+android:textSize="29dp"
+android:background="@color/colorAccent"/>
+<TextViewandroid:paddingTop="8dp"
+android:layout_width="match_parent"
+android:layout_height="50dp"
+android:textStyle="italic"
+android:textAlignment="center"
+android:text="Agni, Vayu, Jal, Prithvi"
+android:textSize="29dp"/>
+<ScrollViewandroid:paddingTop="8dp"
+android:layout_width="match_parent"
+android:layout_height="200dp">
+<TextViewandroid:paddingTop="8dp"
+android:layout_width="match_parent"
+android:layout_height="400dp"
+android:textSize="20dp"
+android:text="@string/details"/></ScrollView>
+<HorizontalScrollViewandroid:paddingTop="8dp"
+android:layout_height="123dp"
+android:layout_width="match_parent"    >
+<LinearLayoutandroid:orientation="horizontal"
+android:layout_height="wrap_content"
+android:layout_width="wrap_content">
+<TextViewandroid:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:text="@string/data"
+android:paddingTop="10px"
+android:textSize="20dp"/></LinearLayout></HorizontalScrollView>
+<Button          android:layout_gravity="center"
+android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Add Comment"
+android:onClick="add" />
+</LinearLayout>
+
+Java Code:
+package pracs.college.textview2;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Toast;
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main); }
+    public void add(View v) {
+Toast.makeText(getApplicationContext(), "Your Comment has been added.", Toast.LENGTH_SHORT).show(); } }

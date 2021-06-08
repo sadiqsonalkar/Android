@@ -1,0 +1,137 @@
+XML code:
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayoutxmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_height="match_parent"
+android:layout_width="fill_parent" android:orientation="vertical"   >
+<TextViewandroid:layout_width="100dp"
+android:layout_height="wrap_content"
+android:text="Enter 1st No. :"
+android:paddingTop="10px"    />
+<EditTextandroid:layout_width="50dp"
+android:layout_height="wrap_content"
+android:id="@+id/t1"/>
+<TextViewandroid:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Enter 2nd No. :"
+android:paddingTop="10dp"    />
+<EditTextandroid:layout_width="50dp"
+android:layout_height="wrap_content"
+android:id="@+id/t2"/>
+<Button        android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="+"
+android:onClick="add"
+android:id="@+id/add"      />
+<Button        android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="-"
+android:onClick="sub"
+android:id="@+id/sub"   />
+<TextViewandroid:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Result ="
+android:paddingTop="10dp"
+android:id="@+id/res"    /></LinearLayout>
+
+Java code:
+package pracs.college.linearcalc;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.view.View;
+import android.widget.Toast;
+public class MainActivity extends AppCompatActivity {
+EditText e1,e2;    TextView t1;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+        e1 = (EditText) findViewById(R.id.t1);
+        e2 = (EditText) findViewById(R.id.t2);
+        t1 = (TextView) findViewById(R.id.res);    }
+    public void add(View v){
+Toast.makeText(getApplicationContext(),"You have press addition button.",Toast.LENGTH_SHORT).show();
+        double a=Double.parseDouble(e1.getText().toString());
+        double b=Double.parseDouble(e2.getText().toString());
+        double c=a+b;
+        t1.setText("Result = "+Double.toString(c));    }
+    public void sub(View v){
+Toast.makeText(getApplicationContext(),"You have press subtraction button.",Toast.LENGTH_SHORT).show();
+        double a=Double.parseDouble(e1.getText().toString());
+        double b=Double.parseDouble(e2.getText().toString());
+        double c=a-b;
+        t1.setText("Result = "+Double.toString(c));    }}
+
+
+Horizontal
+XML Code:
+<LinearLayoutandroid:layout_height="fill_parent"
+android:layout_width="fill_parent"
+android:orientation="vertical"
+xmlns:android="http://schemas.android.com/apk/res/android">
+<HorizontalScrollViewandroid:layout_height="wrap_content"
+android:layout_width="wrap_content"    >
+<LinearLayoutandroid:orientation="horizontal"
+android:layout_height="wrap_content"
+android:layout_width="wrap_content">
+<TextViewandroid:layout_width="100dp"
+android:layout_height="wrap_content"
+android:text="Enter 1st No. :"
+android:paddingTop="10px"    />
+<EditTextandroid:layout_width="50dp"
+android:layout_height="wrap_content"
+android:id="@+id/t1"/>
+<TextViewandroid:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Enter 2nd No. :"
+android:paddingTop="10dp"    />
+<EditTextandroid:layout_width="50dp"
+android:layout_height="wrap_content"
+android:id="@+id/t2"/>
+<Button                android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="+"
+android:onClick="add"
+android:id="@+id/add"      />
+<Button                android:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="-"
+android:onClick="sub"
+android:id="@+id/sub"   />
+<TextViewandroid:layout_width="wrap_content"
+android:layout_height="wrap_content"
+android:text="Result ="
+android:paddingTop="10dp"android:id="@+id/res"/></LinearLayout></HorizontalScrollView></LinearLayout>
+
+Java code:
+package pracs.college.linearcalc;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.view.View;
+import android.widget.Toast;
+public class MainActivity extends AppCompatActivity {
+EditText e1,e2;    TextView t1;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+        e1 = (EditText) findViewById(R.id.t1);
+        e2 = (EditText) findViewById(R.id.t2);
+        t1 = (TextView) findViewById(R.id.res);    }
+    public void add(View v){
+Toast.makeText(getApplicationContext(),"You have press addition button.",Toast.LENGTH_SHORT).show();
+        double a=Double.parseDouble(e1.getText().toString());
+        double b=Double.parseDouble(e2.getText().toString());
+        double c=a+b;
+        t1.setText("Result = "+Double.toString(c));    }
+    public void sub(View v){
+Toast.makeText(getApplicationContext(),"You have press subtraction button.",Toast.LENGTH_SHORT).show();
+        double a=Double.parseDouble(e1.getText().toString());
+        double b=Double.parseDouble(e2.getText().toString());
+        double c=a-b;
+        t1.setText("Result = "+Double.toString(c));    }}
+
+
